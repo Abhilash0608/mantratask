@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+
+import InputForm from "./InputForm";
+import Table from "./Table";
+
+import { Route, Routes } from "react-router";
 
 function App() {
+  const [data, setData] = useState([]);
+  const [edit, setEdit] = useState(false);
+  const [editElement, setEditElement] = useState({});
+  const appendData = (item) => {
+    setData((prev) => {
+      return [...prev, item];
+    });
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route index path="/" element={<InputForm />} />
+      </Routes>
+
+      {/* <Table
+        data={data}
+        handleDelete={handleDelete}
+        handleEdit={handleEdit}
+        setEdit={setEdit}
+  />*/}
     </div>
   );
 }
